@@ -95,10 +95,10 @@ The purpose of this repo is to provide an introduction to the theory of ANNs (Ar
 ###Tools
 
 **Python:**  
-  >-Theano
-  >-Numpy
-  >- ???
-
+  >- Theano  
+  >- Numpy  
+  >- ?
+  
 ###Remarks
 
   >-This is just a very rough, unfinished outline of what we may choose to include in our Neural Network presentation!
