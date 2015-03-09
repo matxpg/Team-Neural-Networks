@@ -1,0 +1,233 @@
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen">
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
+
+  <title>Team-neural-networks</title>
+  <meta name="description" content="Exploring Neural Network Theory, and Their Application to Computer Vision">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">Team-neural-networks</h1>
+    </header>
+    <div id="container">
+      <p class="tagline">Exploring Neural Network Theory, and Their Application to Computer Vision</p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/leftea/Team-Neural-Networks/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/leftea/Team-Neural-Networks/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/leftea/Team-Neural-Networks" class="code">View Team-neural-networks on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h1>
+<a id="team-neural-networks" class="anchor" href="#team-neural-networks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Team-Neural-Networks</h1>
+
+<hr>
+
+<p>Authors: Mitch &amp; Matt</p>
+
+<p>The purpose of this repo is to provide an introduction to the theory of ANNs (Artifical Neural Networks) and demonstrate their applications on data. </p>
+
+<h3>
+<a id="tentative-presentation-plans" class="anchor" href="#tentative-presentation-plans" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tentative presentation plans:</h3>
+
+<p><strong>1. Introduction:</strong>    </p>
+
+<blockquote>
+<ul>
+<li>What are Artifical Neural Networks?</li>
+<li>(A <em>very brief history</em> of ANNs ) - optional, but good to know regardless</li>
+</ul>
+</blockquote>
+
+<p><em>The next few topics are taken from Wikipedia, so</em> <strong>TODO:</strong> <em>Find good resources!</em></p>
+
+<p><strong>Network function:</strong>  </p>
+
+<blockquote>
+<ul>
+<li>Outline the typical ANN parameters - interconnection pattern between different layers of neruons, learning process for updating weights of the interconnections, and the activation function that converts a neuron's weighted input to its output activation</li>
+</ul>
+</blockquote>
+
+<p><strong>Learning:</strong>  </p>
+
+<blockquote>
+<ul>
+<li>Cost functions / Choosing a Cost function</li>
+<li>Paradigms : In both of our datasets, we will likely rely on supervised learning techniques </li>
+<li>Mean squared error</li>
+</ul>
+</blockquote>
+
+<h3>
+<a id="feedforward-neural-network" class="anchor" href="#feedforward-neural-network" aria-hidden="true"><span class="octicon octicon-link"></span></a>FeedForward Neural Network</h3>
+
+<p><strong>Feed Forward:</strong>  </p>
+
+<blockquote>
+<ul>
+<li>Connections between units do not form a directed cycle. Different from recurrent neural networks (RNNs).</li>
+</ul>
+</blockquote>
+
+<p><strong>Single Layer Perceptron:</strong>  </p>
+
+<blockquote>
+<ul>
+<li>Linear Classifier</li>
+<li>Uses Linear predictor function combining set of weights with the feature vector</li>
+<li>Online learning - process data in piece by piece fashion (ie in order that input is given, not having entire input avail from start)</li>
+</ul>
+</blockquote>
+
+<p><strong>Multilayer Perceptron:</strong>  </p>
+
+<blockquote>
+<ul>
+<li>Multi-layers of computational units conected in feed-forward manner</li>
+<li>Each neuron in a layer has direct connections to neurons in subsequent layer</li>
+<li>Sigmoid Function  (Common activation function)</li>
+<li><strong>Back-propagation</strong></li>
+<li>&gt;- Output values compared with correct answers to find value of some error function, and then the error is fed back through the network, and the weights of each connection are adjusted in order to reduce the value of the error function. Cycles of this eventually converge to a state where the error of the calculations is small. </li>
+<li>Weight adjusting - general method for non-linear optimization is Gradient Descent, where the derivative of the error function with respect to the network weights is computed, and weights are changed such that error decreases.</li>
+<li>Back-propagation can only be applied on ANNs with differentiable activation functions because of this</li>
+</ul>
+</blockquote>
+
+<p><strong>Misc:</strong> </p>
+
+<blockquote>
+<ul>
+<li>Additional techniques</li>
+<li>Danger of overfitting the training data and not capturing true model of the dat</li>
+<li>To avoid overfitting one heuristic called early stopping can be used </li>
+<li>Speed of convergence in back-propagation algorithms</li>
+<li>Possibility of ending up in a local minimum of the error function</li>
+</ul>
+</blockquote>
+
+<p><strong>Convolutional Neural Network:</strong>  </p>
+
+<blockquote>
+<ul>
+<li>Feed-forward</li>
+<li>Individual neurons tiled in an overlapping manner of regions in visual field</li>
+<li>Inspired by biological processes / are variations of multilayer perceptron</li>
+<li>During backpropagation momentum and weight decay are introduced, to avoid much oscillation during stochastic gradient descent</li>
+<li>
+<strong>CNN Layers:</strong><br>
+</li>
+<li>Convolutional Layer</li>
+<li>&gt;- Parameters of each convolutional kernal are trained by backpropagation algorithm</li>
+<li>&gt;- many convolution kernels in each layer </li>
+<li>&gt;- each kernel is replicated over entire image with same parameters</li>
+<li>&gt;- Function of the convolution operators is: Extract different features of the input</li>
+<li>&gt;- First convlution layers will obtain low-level features such as edges, line curves, and the more layers there are, the more higher-level features it will get</li>
+<li>ReLU Layer</li>
+<li>&gt;- Rectified Linear Units</li>
+<li>&gt;- Layer of neurons using non-saturating activation function f(x) = max(0,x) thereby increasing nonlinear properties of the decision function without affecting receptive fields of the convolution layer</li>
+<li>&gt;- Other functions are used to increase nonlinearity such as hyperbolic tangent - f(x) - tanh(x), f(x) = |tanh(x)|, and the sigmoid function f(x) = (1+e^(-x))^(-1).</li>
+<li>&gt;- Adv. of ReLU is that compared to these functions, neural network trains several times faster</li>
+<li>Dropout "layer"</li>
+<li>&gt;- Fully connected layer occupies most of the parameters and is prone to overfitting</li>
+<li>&gt;- Dropout method introduced to prevent overfitting</li>
+<li>&gt;- Also improves speed of training</li>
+<li>&gt;- Dropout is performed randomly - in input layer, probability of dropping a neuron is between 0.5, 1 and in hidden layers, a probability of 0.5 is used. Neurons that get dropped do not contribute to the forward pass and back propagation. </li>
+<li>Loss layer</li>
+<li>&gt;- Loss functions could be used for different tasks</li>
+<li>Softmax loss</li>
+<li>&gt;- Predicting single class of K mutually exclusive classes</li>
+<li>Sigmoid cross-entropy loss</li>
+<li>&gt;- predicting K independent probability values in [0,1]</li>
+<li>Euclidean loss</li>
+<li>&gt;- Regressing to real-valued labels [-inf,inf]</li>
+</ul>
+</blockquote>
+
+<h3>
+<a id="applications" class="anchor" href="#applications" aria-hidden="true"><span class="octicon octicon-link"></span></a>Applications</h3>
+
+<p><strong>Image Recognition</strong>  </p>
+
+<blockquote>
+<ul>
+<li>Handwritten numbers</li>
+<li>Facial Keypoints</li>
+</ul>
+</blockquote>
+
+<h3>
+<a id="fine-tuning" class="anchor" href="#fine-tuning" aria-hidden="true"><span class="octicon octicon-link"></span></a>Fine-tuning</h3>
+
+<blockquote>
+<ul>
+<li>Dealing with small amount of training data</li>
+<li>???</li>
+</ul>
+</blockquote>
+
+<h3>
+<a id="tools" class="anchor" href="#tools" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tools</h3>
+
+<p><strong>Python:</strong>  </p>
+
+<blockquote>
+<p>-Theano
+-Numpy</p>
+
+<ul>
+<li>???</li>
+</ul>
+</blockquote>
+
+<h3>
+<a id="remarks" class="anchor" href="#remarks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Remarks</h3>
+
+<blockquote>
+<p>-This is just a very rough, unfinished outline of what we may choose to include in our Neural Network presentation!</p>
+
+<ul>
+<li>TO BE UPDATED!</li>
+</ul>
+</blockquote>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/leftea" class="avatar"><img src="https://avatars3.githubusercontent.com/u/6456330?v=3&amp;s=60" width="48" height="48"></a> <a href="https://github.com/leftea">leftea</a> maintains <a href="https://github.com/leftea/Team-Neural-Networks">Team-neural-networks</a></p>
+
+
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="http://pages.github.com/">GitHub Pages</a><br>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/leftea/Team-Neural-Networks/tarball/master" class="tar">tar</a><a href="https://github.com/leftea/Team-Neural-Networks/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+  
+</body>
+</html>
