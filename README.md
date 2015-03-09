@@ -87,6 +87,19 @@ The purpose of this repo is to provide an introduction to the theory of ANNs (Ar
   >- Handwritten numbers
   >- Facial Keypoints
 
+**Data processing**
+
+**EDA**
+
+**How we chose parameters**
+
+**How many learning cycles did it take to reach a low error on the data (graphs)**
+
+**Performance comparison of differnet neural networks we used (if we used more than one)**
+
+**How do we compare against others who did this problem on Kaggle (if we have time to put together proper submission with test data)**
+
+
 ###Fine-tuning  
 >- Dealing with small amount of training data
 >- ???
@@ -101,6 +114,8 @@ The purpose of this repo is to provide an introduction to the theory of ANNs (Ar
   
 ###Remarks
 
+  >- 
+  >- In conclusion could briefly mention [Recurrent Neural Networks](http://en.wikipedia.org/wiki/Recurrent_neural_network#Fully_recurrent_network)
   >-This is just a very rough, unfinished outline of what we may choose to include in our Neural Network presentation!
   >- TO BE UPDATED!
 
