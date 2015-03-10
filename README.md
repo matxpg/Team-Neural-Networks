@@ -81,11 +81,24 @@ The purpose of this repo is to provide an introduction to the theory of ANNs (Ar
   >- Euclidean loss
   >- >- Regressing to real-valued labels [-inf,inf]
 
-###Applications  
+###Problems in Neural Networks  
 
-**Image Recognition**  
+**Association Rule Learning**  
+  >- Find interesting rules and relations between variables in large databases
+
+**Anomaly Detection**  
+  >- Identification of items that do not conform to expected pattern 
+  >- E.g. Intrusion detection, Fraud detection
+
+**Grammar Induction**  
+  >- Grammatical inference aka syntactic pattern recognition
+  >- Learning a formal grammar from a set of observations
+
+**Classification (What we are doing)**  
   >- Handwritten numbers
   >- Facial Keypoints
+
+###Applications
 
 **Data processing**
 
