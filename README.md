@@ -17,7 +17,7 @@ The purpose of this repo is to provide an introduction to the theory of ANNs (Ar
 
 **Network function:**  
   >- Outline the typical ANN parameters - interconnection pattern between different layers of neruons, learning process for updating weights of the interconnections, and the activation function that converts a neuron's weighted input to its output activation
-
+  >- Training Epoch - What is it, what does it mean vs iteration - An epoch is a measure of the number of times all of the training vectors are used once to update the weights.
 **Learning:**  
   >- Cost functions / Choosing a Cost function
   >- Paradigms : In both of our datasets, we will likely rely on supervised learning techniques 
@@ -33,10 +33,12 @@ The purpose of this repo is to provide an introduction to the theory of ANNs (Ar
   >- Linear Classifier
   >- Uses Linear predictor function combining set of weights with the feature vector
   >- Online learning - process data in piece by piece fashion (ie in order that input is given, not having entire input avail from start)
+  >- Can reduce to simpler models given certain parameter
 
 **Multilayer Perceptron:**  
   >- Multi-layers of computational units conected in feed-forward manner
   >- Each neuron in a layer has direct connections to neurons in subsequent layer
+  >- Use of dropout layer to prevent overfitting
   >- Sigmoid Function  (Common activation function)
   >- **Back-propagation**
   >- >- Output values compared with correct answers to find value of some error function, and then the error is fed back through the network, and the weights of each connection are adjusted in order to reduce the value of the error function. Cycles of this eventually converge to a state where the error of the calculations is small. 
@@ -45,8 +47,9 @@ The purpose of this repo is to provide an introduction to the theory of ANNs (Ar
 
 **Misc:** 
   >- Additional techniques
-  >- Danger of overfitting the training data and not capturing true model of the dat
+  >- Danger of overfitting the training data and not capturing true model of the data 
   >- To avoid overfitting one heuristic called early stopping can be used 
+  >- dropout layer
   >- Speed of convergence in back-propagation algorithms
   >- Possibility of ending up in a local minimum of the error function
 
@@ -57,11 +60,11 @@ The purpose of this repo is to provide an introduction to the theory of ANNs (Ar
   >- During backpropagation momentum and weight decay are introduced, to avoid much oscillation during stochastic gradient descent
   >- **CNN Layers:**  
   >- Convolutional Layer
-  >- >- Parameters of each convolutional kernal are trained by backpropagation algorithm
+  >- >- Parameters of each convolutional kernel are trained by backpropagation algorithm
   >- >- many convolution kernels in each layer 
   >- >- each kernel is replicated over entire image with same parameters
   >- >- Function of the convolution operators is: Extract different features of the input
-  >- >- First convlution layers will obtain low-level features such as edges, line curves, and the more layers there are, the more higher-level features it will get
+  >- >- First convolution layers will obtain low-level features such as edges, line curves, and the more layers there are, the more higher-level features it will get
   >- ReLU Layer
   >- >- Rectified Linear Units
   >- >- Layer of neurons using non-saturating activation function f(x) = max(0,x) thereby increasing nonlinear properties of the decision function without affecting receptive fields of the convolution layer
@@ -81,7 +84,7 @@ The purpose of this repo is to provide an introduction to the theory of ANNs (Ar
   >- Euclidean loss
   >- >- Regressing to real-valued labels [-inf,inf]
 
-###Problems in Neural Networks  
+###Problems in Neural Networks  - MAKE THESE BRIEF
 
 **Association Rule Learning**  
   >- Find interesting rules and relations between variables in large databases
@@ -103,12 +106,13 @@ The purpose of this repo is to provide an introduction to the theory of ANNs (Ar
 **Data processing**
 
 **EDA**
+     >- lol.
 
 **How we chose parameters**
 
 **How many learning cycles did it take to reach a low error on the data (graphs)**
 
-**Performance comparison of differnet neural networks we used (if we used more than one)**
+**Performance comparison of different neural networks we used (if we used more than one)**
 
 **How do we compare against others who did this problem on Kaggle (if we have time to put together proper submission with test data)**
 
@@ -123,12 +127,12 @@ The purpose of this repo is to provide an introduction to the theory of ANNs (Ar
 **Python:**  
   >- Theano  
   >- Numpy  
-  >- ?
+  >- Lasagne
+  >- Nolearn
   
 ###Remarks
 
   >- 
   >- In conclusion could briefly mention [Recurrent Neural Networks](http://en.wikipedia.org/wiki/Recurrent_neural_network#Fully_recurrent_network)
-  >-This is just a very rough, unfinished outline of what we may choose to include in our Neural Network presentation!
-  >- TO BE UPDATED!
+
 
