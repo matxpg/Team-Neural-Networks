@@ -71,7 +71,11 @@ There are a few different choices for the activation function
   >- Online learning - process data in piece by piece fashion (ie in order that input is given, not having entire input avail from start)
   >- Can reduce to simpler models given certain parametep
 
-A single layer perceptron is a binary classifier that maps an input to a binary value based on the weight that the features have. A single layer perceptron needs the inputs to be linearly separable, or it will not be able to classify the outputs correctly. Linear separability is more or less the existence  Because of this, we can visualize the 
+A single layer perceptron is a binary classifier that maps an input to a binary value based on the weight that the features have. A single layer perceptron needs the inputs to be linearly separable, or it will not be able to classify the outputs correctly. Linear separability is more or less the existence of a hyperplane "decision boundary" in which the two classifications of data can be split apart.
+
+It is actually possible to prove that if the training set is linearly separable, then the perceptron will converge.
+
+The single layer perceptron can collapse to both logistic regression or support vector machines 
 
 ##2.2. Multi-layer perceptron.
 
