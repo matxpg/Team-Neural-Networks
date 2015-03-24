@@ -33,6 +33,8 @@ In biology, a neuron is a cell that is part of the nervous system. The neuron ha
 
 **For this presentation, we are going to consider one class of ANNs - Feed-Forward neural networks.
 
+
+
 ##1.2. Applications
 
 ##1.2.1. Classification
@@ -45,13 +47,33 @@ In biology, a neuron is a cell that is part of the nervous system. The neuron ha
 
 
 #2.Feed-Forward Neural Networks
- Feed-Forward ANNs: Artificial Neural Networks wherein connections between units (neurons) do not form a directed cycle.
 
-##2.0. Model of a neuron
+
+##2.0. Model of a neuron/Activation functions
+##2.0.1 Neurons
+We have neural networks, we of coruse need to talk about what a "Neuron" means to us. The Neuron has 3 main parts:
+  >- Synapses or "Links", each of which has different weights. If we have an input signal coming in to a neuron, we may wish to weight the input features differrently. 
+  >- Adder - Used for summing the input signals which have been weighted. 
+  >- Activation function - is used to limit the output of a neuron. Essentially what the activation function does is require that a sufficiently strong output is reached. This is very similar to the neurons in our brains, which fire or activate in response to a change in electrical charge.
+
+##2.0.2 Activation function 
+There are a few different choices for the activation function
+  >- Threshold function - Is basically 0 or 1 depending on if the input is positive or negative. - Not particularly useful
+  >- Piecewise linear - This is simply an approximation of non-linear behavior. Has sharp corners
+  >- Sigmoid function - The typical choice for activation. It is s-shaped and strictly increasing.
+
+
+
 
 ##2.1. Single-layer
+  >- Linear Classifier
+  >- Uses Linear predictor function combining set of weights with the feature vector
+  >- Online learning - process data in piece by piece fashion (ie in order that input is given, not having entire input avail from start)
+  >- Can reduce to simpler models given certain parametep
 
-##2.2. Multi-layer pe
+A single layer perceptron is a binary classifier that maps an input to a binary value based on the weight that the features have. A single layer perceptron needs the inputs to be linearly separable, or it will not be able to classify the outputs correctly. Linear separability is more or less the existence  Because of this, we can visualize the 
+
+##2.2. Multi-layer perceptron.
 
 ##2.3. Convolutional
 http://media.wiley.com/product_data/excerpt/19/04713491/0471349119.pdf
@@ -79,9 +101,6 @@ In the following work no particular brain part or function will be modeled. Rath
 
 
 
-**1. Introduction:**    
-  >- What are Artifical Neural Networks?
-  >- (A *very brief history* of ANNs ) - optional, but good to know regardless
 
 
 *The next few topics are taken from Wikipedia, so* **TODO:** *Find good resources!*
@@ -215,7 +234,7 @@ In the following work no particular brain part or function will be modeled. Rath
 
 ##### <a name="[4]"/> [4]:Pinkus, A. (1999), "Approximation theory of the MLP model in neural networks," Acta Numerica, 8, 143-196.
 
-##### <a name="[5]"/> [5]:Haykin, S. (1994), Neural Networks: A Comprehensive Foundation, NY: Macmillan.
+##### <a name="[5]"/> [5]:Haykin, S. (1999), Neural Networks: A Comprehensive Foundation, NY: Macmillan.
 
 ##### <a name="[6]"/> [6]:Nigrin, A. (1993), Neural Networks for Pattern Recognition, Cambridge, MA: The MIT Press.
 
