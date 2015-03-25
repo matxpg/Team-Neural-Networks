@@ -66,18 +66,22 @@ There are a few different choices for the activation function
 
 
 ##2.1. Single-layer
-  >- Linear Classifier
-  >- Uses Linear predictor function combining set of weights with the feature vector
-  >- Online learning - process data in piece by piece fashion (ie in order that input is given, not having entire input avail from start)
-  >- Can reduce to simpler models given certain parametep
 
 A single layer perceptron is a binary classifier that maps an input to a binary value based on the weight that the features have. A single layer perceptron needs the inputs to be linearly separable, or it will not be able to classify the outputs correctly. Linear separability is more or less the existence of a hyperplane "decision boundary" in which the two classifications of data can be split apart.
 
 It is actually possible to prove that if the training set is linearly separable, then the perceptron will converge.
 
-The single layer perceptron can collapse to both logistic regression or support vector machines 
+The single layer perceptron can collapse to both logistic regression or support vector machines with particular choices of the weights.
 
 ##2.2. Multi-layer perceptron.
+ >- Multi-layers of computational units conected in feed-forward manner
+  >- Each neuron in a layer has direct connections to neurons in subsequent layer
+  >- Use of dropout layer to prevent overfitting
+  >- Sigmoid Function  (Common activation function)
+  >- **Back-propagation**
+  >- >- Output values compared with correct answers to find value of some error function, and then the error is fed back through the network, and the weights of each connection are adjusted in order to reduce the value of the error function. Cycles of this eventually converge to a state where the error of the calculations is small. 
+  >- Weight adjusting - general method for non-linear optimization is Gradient Descent, where the derivative of the error function with respect to the network weights is computed, and weights are changed such that error decreases.
+  >- Back-propagation can only be applied on ANNs with differentiable activation functions because of this
 
 ##2.3. Convolutional
 http://media.wiley.com/product_data/excerpt/19/04713491/0471349119.pdf
@@ -121,13 +125,6 @@ In the following work no particular brain part or function will be modeled. Rath
 
 **Feed Forward:**  
   >- Connections between units do not form a directed cycle. Different from recurrent neural networks (RNNs).
-
-
-**Single Layer Perceptron:**  
-  >- Linear Classifier
-  >- Uses Linear predictor function combining set of weights with the feature vector
-  >- Online learning - process data in piece by piece fashion (ie in order that input is given, not having entire input avail from start)
-  >- Can reduce to simpler models given certain parameter
 
 **Multilayer Perceptron:**  
   >- Multi-layers of computational units conected in feed-forward manner
