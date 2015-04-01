@@ -76,7 +76,7 @@ The single layer perceptron can collapse to both logistic regression or support 
 ##2.2. Multi-layer perceptron.
  >- Multi-layers of computational units conected in feed-forward manner
   >- Each neuron in a layer has direct connections to neurons in subsequent layer
-  >- Use of dropout layer to prevent overfitting
+  >- We can also use dropout layers to Dropout is a technique that addresses both these issues. It prevents overfitting and provides a way of approximately combining exponentially many different neural network architectures efficiently. The term “dropout” refers to dropping out units (hidden and visible) in a neural network. By dropping a unit out, we mean temporarily removing it from the network, along with all its incoming and outgoing connections [[10]](#[10])
   >- Sigmoid Function  (Common activation function)
   >- **Back-propagation**
   >- >- Output values compared with correct answers to find value of some error function, and then the error is fed back through the network, and the weights of each connection are adjusted in order to reduce the value of the error function. Cycles of this eventually converge to a state where the error of the calculations is small. 
@@ -122,19 +122,6 @@ In the following work no particular brain part or function will be modeled. Rath
   >- Mean squared error
 
 ###FeedForward Neural Network
-
-**Feed Forward:**  
-  >- Connections between units do not form a directed cycle. Different from recurrent neural networks (RNNs).
-
-**Multilayer Perceptron:**  
-  >- Multi-layers of computational units conected in feed-forward manner
-  >- Each neuron in a layer has direct connections to neurons in subsequent layer
-  >- Use of dropout layer to prevent overfitting
-  >- Sigmoid Function  (Common activation function)
-  >- **Back-propagation**
-  >- >- Output values compared with correct answers to find value of some error function, and then the error is fed back through the network, and the weights of each connection are adjusted in order to reduce the value of the error function. Cycles of this eventually converge to a state where the error of the calculations is small. 
-  >- Weight adjusting - general method for non-linear optimization is Gradient Descent, where the derivative of the error function with respect to the network weights is computed, and weights are changed such that error decreases.
-  >- Back-propagation can only be applied on ANNs with differentiable activation functions because of this
 
 **Misc:** 
   >- Additional techniques
@@ -244,3 +231,5 @@ In the following work no particular brain part or function will be modeled. Rath
 ##### <a name="[8]"/> [8]:http://cs.stanford.edu/people/eroberts/courses/soco/projects/2000-01/neural-networks/Applications/character.html
 
 ##### <a name="[9]"/> [9]:http://www.cs.toronto.edu/~fritz/absps/imagenet.pdf
+##### <a name ="[10]"/> [10]: 
+http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf
