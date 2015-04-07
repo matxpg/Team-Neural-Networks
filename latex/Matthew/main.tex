@@ -198,14 +198,6 @@ def nesterov_momentum(loss, all_params, learning_rate, momentum=0.9):
 \end{frame}
 
 \begin{frame}
-    \frametitle{Moving on}
-    \begin{block}{MLP applications}
-    \item Now that I've introduced MLP Networks..
-    \item It's applications time!
-    \end{block}
-\end{frame}
-
-\begin{frame}
     \frametitle{Facial Keypoint Recognition}
     \begin{block}{Problem:}
     \item Kaggle competition
@@ -381,8 +373,8 @@ net1 = NeuralNet(
 \begin{minted}[linenos]{python}
 #paramter grid for gridsearch cv
 param_grid = {
-'more_params': [{'hidden_num_units': 100}, {'hidden_num_units':150}, {'hidden_num_units': 200},
-{'hidden_num_units': 250}, {'hidden_num_units': 300}]
+'more_params': [{'hidden_num_units': 100}, {'hidden_num_units':150}...,
+{'hidden_num_units': 300}]
 }
  
 #find net with best params , and then refit with all data on best net
@@ -390,9 +382,11 @@ gs = GridSearchCV(net1, param_grid, cv=2, refit=True, verbose=4)
 X,y=load() # Load our data
 gs.fit(X,y) #Fit our gridsearchCV object
 with open('net1_gridsearch.pickle', 'wb') as f:
-    # we serialize the gridsearch model, as it also has the fitted neural network with best hidden unit number:
+    # we serialize the gridsearch model, as it also has the fitted 
+    #neural network with best hidden unit number:
     pickle.dump(gs, f, -1)
-    #if you just want to save the best estimator - ie - the neural network itself - without the gridsearch info:
+    #if you just want to save the best estimator - ie - the neural network
+    #itself - without the gridsearch info:
     #pickle.dump(gs.best_estimator_, f, -1)
 \end{minted}
 \end{frame}
