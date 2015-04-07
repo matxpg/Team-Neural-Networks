@@ -79,30 +79,7 @@
 %%%%%%%%%%%%%%%%
 %%Training MLP%%
 %%%%%%%%%%%%%%%%
-\section{Training MLP Networks}
-\begin{frame}
-    \frametitle{How do we train the Neural Network?}
-    \begin{block}{Higher level pseudocode...}
-    \begin{itemize}
-    \item A typical choice: Uniform random distribution in range $$(\sqrt{-1d},\sqrt{1d})$$
-    \item d: dimension of the input
-    \item Choice of initial weights is important!
-    \end{itemize}
-    \end{block}    
-\end{frame}
-
-\begin{frame}
-    \frametitle{Training the network}
-    \begin{block}{How do we train the network?}
-    \begin{itemize}
-    \item Loss function: typically MSE
-    \item Goal: Find weights that minimize the loss function
-    \end{itemize}
-    \end{block}   
-\end{frame}
-
-
-\section{Updating the weights}
+\section{Training the network}
 \begin{frame}
     \frametitle{Training the network}
     \begin{block}{High level pseudocode:}
@@ -500,6 +477,9 @@ Taking a sample face (from the training set), here are the actual coordinates:
 \includegraphics[width=150px,height=150px]{net1_sampleprediction_ontrain_actual.png}
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%Kaggle Submission net1%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
 \frametitle{Kaggle submission --pt.1}
 Here's a plot of predicted keypoints for a Kaggle test sample:
@@ -523,22 +503,213 @@ Here's a plot of predicted keypoints for a Kaggle test sample:
 \end{block}
 \end{frame}
 
-\begin{minted}[linenos]{python}
 
-\end{minted}
-\end{frame}
+
 \begin{frame}[fragile]
-\frametitle{Title}
-\begin{minted}[linenos]{python}
-
-\end{minted}
+\frametitle{Model 2}
+\begin{block}{Specialist Networks}
+\begin{itemize}
+\item Idea: Train multiple networks on subsets of the 15 facial keypoints!
+\item Allows us to use more training data
+\item Result: 6 Specialized networks
+\end{itemize}
+\end{block}
 \end{frame}
+
 \begin{frame}[fragile]
-\frametitle{Title}
+\frametitle{Dynamically updating learning rate and momentum coefficients }
 \begin{minted}[linenos]{python}
+#http://danielnouri.org/notes/2014/12/17/using-convolutional-neural-nets-to-detect-facial-keypoints-tutorial/#changing-learning-rate-and-momentum-over-time
+class AdjustVariable(object):
+    def __init__(self, name, start=0.03, stop=0.001):
+        self.name = name
+        self.start, self.stop = start, stop
+        self.ls = None
 
+    def __call__(self, nn, train_history):
+        if self.ls is None:
+            self.ls = np.linspace(self.start, self.stop, nn.max_epochs)
+
+        epoch = train_history[-1]['epoch']
+        new_value = float32(self.ls[epoch - 1])
+        getattr(nn, self.name).set_value(new_value)
 \end{minted}
 \end{frame}
 
+
+\begin{frame}[fragile]
+\frametitle{The basis for our specialized neural networks}
+\begin{minted}[linenos]{python}
+    net = NeuralNet(
+        layers=[  # three layers: one hidden layer
+            ('input', layers.InputLayer),
+            ('hidden', layers.DenseLayer),
+            ('output', layers.DenseLayer),
+            ],
+        # layer parameters:
+        input_shape=(None, 9216),  # 96x96 input pixels per batch
+        hidden_num_units=100,  # number of units in hidden layer
+        hidden_nonlinearity=sigmoid,
+        output_nonlinearity=None,  # output layer uses identity function
+        output_num_units=30,  # 30 target values for original, but we're changing that  on line 227
+        # optimization params
+        update=nesterov_momentum,
+        update_learning_rate=theano.shared(float32(0.01)),
+        update_momentum=theano.shared(float32(0.9)),
+        regression=True, 
+        max_epochs=500,
+        on_epoch_finished=[AdjustVariable('update_learning_rate', start=0.01, stop=0.0001),
+            AdjustVariable('update_momentum', start=0.9, stop=0.999),
+            EarlyStopping(patience=200)
+            ],
+        verbose=1
+        )
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{the function to fit our specialized networks}
+\begin{minted}[linenos]{python}
+    for setting in SPECIALIST_SETTINGS:
+        cols = setting['columns']
+        X, y = load(cols=cols)
+
+        model = clone(net)
+        model.output_num_units = y.shape[1]
+        # set number of epochs relative to number of training examples:
+        model.max_epochs = int(1e7 / y.shape[0])
+        if 'kwargs' in setting:
+            # an option 'kwargs' in the settings list may be used to
+            # set any other parameter of the net:
+            vars(model).update(setting['kwargs'])
+
+        print("Training model for columns {} for up to {} epochs".format(
+            cols, model.max_epochs))
+        model.fit(X, y)
+        specialists[cols] = model
+
+    with open('net-specialists.pickle', 'wb') as f:
+        # we persist a dictionary with all models:
+        pickle.dump(specialists, f, -1)
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Analysis of the results - 1}
+\begin{minted}[linenos]{python}
+#Load our 6 networks
+net2_specialists = pickle.load(open('./net-specialists.pickle', 'rb'))
+net2 = [x for x in net2_specialists.iteritems()]
+#load networks into list
+net2_nets = [x[1] for x in net2]
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Analysis of the results - 2}
+\begin{minted}[linenos]{python}
+>>>for x,net in enumerate(net2):
+>>>....print summary(x, net[0])
+Specialized network #1 is trained on the keypoints:
+('left_eye_center_x', ...,
+'right_eye_center_y')
+
+Specialized network #2 is trained on the keypoints:
+('nose_tip_x', 'nose_tip_y')
+
+Specialized network #3 is trained on the keypoints:
+('mouth_left_corner_x',...,
+'mouth_right_corner_y', ..., 'mouth_center_top_lip_y')
+
+Specialized network #4 is trained on the keypoints:
+('mouth_center_bottom_lip_x', 'mouth_center_bottom_lip_y')
+
+Specialized network #5 is trained on the keypoints:
+('left_eye_inner_corner_x', ..., 'right_eye_outer_corner_y')
+
+Specialized network #6 is trained on the keypoints:
+('left_eyebrow_inner_end_x', ..., 'right_eyebrow_outer_end_y')
+\end{minted}
+\end{frame}
+
+\begin{frame}
+\frametitle{Analysis of the results - MSE Learning Curve}
+\includegraphics[width=310px,height=200px]{MSE_learning_curve_specialized_networks.png}
+\end{frame}
+
+\begin{frame}
+\frametitle{Analysis of the results - RMSE Learning Curve}
+\includegraphics[width=310px,height=200px]{RMSE_learn_net2s.png}
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Analysis of the results:}
+\begin{minted}{python}
+labels|train score|valid score
+'Eye centers'|0.00174424204346|0.00304428217138
+'Nose tips'|0.00344257359455|0.005985269282
+'Mouth corners and tops'|0.00159532899415|0.00399073439391
+'Mouth bottom center'|0.00331330332695|0.00583614665805
+'Eye corners'|0.000931936667851|0.00145246363777
+'Eyebrows'|0.00142408664489|0.00218300545633
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Submitting to kaggle}
+\begin{minted}[linenos]{python}
+preds = []
+For each specialized network, net:
+    Load X data for cols corresponding to net preds.append([net.predict(X)])
+    #rearrange indices to follow same order as kaggle data
+    preds[i] = preds[i][:, 0, 1, 4, 5, 2, 3, 6, 7]
+    #stack predictions into one large array
+    preds = np.hstack(preds)
+    #create submission the same way as submission 1
+\end{minted}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Submitting to kaggle: results}
+\begin{block}{Submission made!}
+\includegraphics[width=280px,height=150px]{net2_sub.png}
+\end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Conclusion}
+\begin{block}{Neural Networks}
+\item Complex! A whole course could be devoted to neural network theory
+\item Can be applied to many different problems
+\end{block}
+\end{frame}
+
+\begin{frame}{References}
+\begin{block}{ }
+\item Useful code snippets: http://danielnouri.org/notes/2014/12/17/using-convolutional-neural-nets-to-detect-facial-keypoints-tutorial/
+\item 1-hidden-layer MLP Mathematical definition - http://deeplearning.net/tutorial/mlp.html
+Universal Approximation Theorem - http://deeplearning.cs.cmu.edu/notes/Sonia_Hornik.pdf
+
+\item Theano - http://deeplearning.net/software/theano/
+\item Lasagne - http://lasagne.readthedocs.org/en/latest/
+\item Nolearn - https://pythonhosted.org/nolearn/
+
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{references...}
+\begin{block}{ }
+\item Nesterov Momentum - http://www.cs.toronto.edu/~fritz/absps/momentum.pdf
+\item Gradient Descent w/ Momentum - http://brahms.cpmc.columbia.edu/publications/momentum.pdf
+\item Early Stopping - http://papers.nips.cc/paper/1895-overfitting-in-neural-nets-backpropagation-conjugate-gradient-and-early-stopping.pdf
+\item Initial Weights - http://stats.stackexchange.com/questions/47590/what-are-good-initial-weights-in-a-neural-network
+\end{block}
+\end{frame}
 
 \end{document}
