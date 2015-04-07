@@ -1,37 +1,25 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Team-neural-networks : Exploring Neural Network Theory, and Their Application to Computer Vision">
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Team-neural-networks</title>
+    <meta charset="UTF-8">
+    <title>Team-neural-networks by leftea</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
+    <section class="page-header">
+      <h1 class="project-name">Team-neural-networks</h1>
+      <h2 class="project-tagline">Exploring Neural Network Theory, and Their Application to Computer Vision</h2>
+      <a href="https://github.com/leftea/Team-Neural-Networks" class="btn">View on GitHub</a>
+      <a href="https://github.com/leftea/Team-Neural-Networks/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/leftea/Team-Neural-Networks/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/leftea/Team-Neural-Networks">View on GitHub</a>
-
-          <h1 id="project_title">Team-neural-networks</h1>
-          <h2 id="project_tagline">Exploring Neural Network Theory, and Their Application to Computer Vision</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/leftea/Team-Neural-Networks/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/leftea/Team-Neural-Networks/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
+    <section class="main-content">
+      <h1>
 <a id="team-neural-networks" class="anchor" href="#team-neural-networks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Team-Neural-Networks</h1>
 
 <hr>
@@ -59,13 +47,9 @@
 <blockquote>
 <ul>
 <li>Outline the typical ANN parameters - interconnection pattern between different layers of neruons, learning process for updating weights of the interconnections, and the activation function that converts a neuron's weighted input to its output activation</li>
-</ul>
-</blockquote>
-
-<p><strong>Learning:</strong>  </p>
-
-<blockquote>
-<ul>
+<li>Training Epoch - What is it, what does it mean vs iteration - An epoch is a measure of the number of times all of the training vectors are used once to update the weights.
+<strong>Learning:</strong><br>
+</li>
 <li>Cost functions / Choosing a Cost function</li>
 <li>Paradigms : In both of our datasets, we will likely rely on supervised learning techniques </li>
 <li>Mean squared error</li>
@@ -90,6 +74,7 @@
 <li>Linear Classifier</li>
 <li>Uses Linear predictor function combining set of weights with the feature vector</li>
 <li>Online learning - process data in piece by piece fashion (ie in order that input is given, not having entire input avail from start)</li>
+<li>Can reduce to simpler models given certain parameter</li>
 </ul>
 </blockquote>
 
@@ -99,6 +84,7 @@
 <ul>
 <li>Multi-layers of computational units conected in feed-forward manner</li>
 <li>Each neuron in a layer has direct connections to neurons in subsequent layer</li>
+<li>Use of dropout layer to prevent overfitting</li>
 <li>Sigmoid Function  (Common activation function)</li>
 <li><strong>Back-propagation</strong></li>
 <li>&gt;- Output values compared with correct answers to find value of some error function, and then the error is fed back through the network, and the weights of each connection are adjusted in order to reduce the value of the error function. Cycles of this eventually converge to a state where the error of the calculations is small. </li>
@@ -112,8 +98,9 @@
 <blockquote>
 <ul>
 <li>Additional techniques</li>
-<li>Danger of overfitting the training data and not capturing true model of the dat</li>
+<li>Danger of overfitting the training data and not capturing true model of the data </li>
 <li>To avoid overfitting one heuristic called early stopping can be used </li>
+<li>dropout layer</li>
 <li>Speed of convergence in back-propagation algorithms</li>
 <li>Possibility of ending up in a local minimum of the error function</li>
 </ul>
@@ -131,11 +118,11 @@
 <strong>CNN Layers:</strong><br>
 </li>
 <li>Convolutional Layer</li>
-<li>&gt;- Parameters of each convolutional kernal are trained by backpropagation algorithm</li>
+<li>&gt;- Parameters of each convolutional kernel are trained by backpropagation algorithm</li>
 <li>&gt;- many convolution kernels in each layer </li>
 <li>&gt;- each kernel is replicated over entire image with same parameters</li>
 <li>&gt;- Function of the convolution operators is: Extract different features of the input</li>
-<li>&gt;- First convlution layers will obtain low-level features such as edges, line curves, and the more layers there are, the more higher-level features it will get</li>
+<li>&gt;- First convolution layers will obtain low-level features such as edges, line curves, and the more layers there are, the more higher-level features it will get</li>
 <li>ReLU Layer</li>
 <li>&gt;- Rectified Linear Units</li>
 <li>&gt;- Layer of neurons using non-saturating activation function f(x) = max(0,x) thereby increasing nonlinear properties of the decision function without affecting receptive fields of the convolution layer</li>
@@ -158,7 +145,7 @@
 </blockquote>
 
 <h3>
-<a id="problems-in-neural-networks" class="anchor" href="#problems-in-neural-networks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Problems in Neural Networks</h3>
+<a id="problems-in-neural-networks----make-these-brief" class="anchor" href="#problems-in-neural-networks----make-these-brief" aria-hidden="true"><span class="octicon octicon-link"></span></a>Problems in Neural Networks  - MAKE THESE BRIEF</h3>
 
 <p><strong>Association Rule Learning</strong>  </p>
 
@@ -200,13 +187,14 @@
 
 <p><strong>Data processing</strong></p>
 
-<p><strong>EDA</strong></p>
+<p><strong>EDA</strong>
+     &gt;- lol.</p>
 
 <p><strong>How we chose parameters</strong></p>
 
 <p><strong>How many learning cycles did it take to reach a low error on the data (graphs)</strong></p>
 
-<p><strong>Performance comparison of differnet neural networks we used (if we used more than one)</strong></p>
+<p><strong>Performance comparison of different neural networks we used (if we used more than one)</strong></p>
 
 <p><strong>How do we compare against others who did this problem on Kaggle (if we have time to put together proper submission with test data)</strong></p>
 
@@ -231,7 +219,8 @@
 </li>
 <li>Numpy<br>
 </li>
-<li>?</li>
+<li>Lasagne</li>
+<li>Nolearn</li>
 </ul>
 </blockquote>
 
@@ -243,22 +232,19 @@
 <li>
 </li>
 <li>In conclusion could briefly mention <a href="http://en.wikipedia.org/wiki/Recurrent_neural_network#Fully_recurrent_network">Recurrent Neural Networks</a>
--This is just a very rough, unfinished outline of what we may choose to include in our Neural Network presentation!</li>
-<li>TO BE UPDATED!</li>
+</li>
 </ul>
 </blockquote>
-      </section>
-    </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Team-neural-networks maintained by <a href="https://github.com/leftea">leftea</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/leftea/Team-Neural-Networks">Team-neural-networks</a> is maintained by <a href="https://github.com/leftea">leftea</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
 
-    
+    </section>
 
+  
   </body>
 </html>
+
