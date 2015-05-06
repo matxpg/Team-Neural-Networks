@@ -1,0 +1,8 @@
+data analysis to do list:
+tune the network a little bit 
+discuss image processing methods
+train equivalent models on image processed variants
+do real handwritten digits with the best model
+discuss epochs and when to stop
+make a submission to kaggle
+look at the literature a bit mroe

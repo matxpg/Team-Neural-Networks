@@ -1,0 +1,70 @@
+% -----------------------------------------------------------------------------
+% Style file for Beamer slides
+%
+% Copyright 2005
+% Numerical Simulation Lab,
+% Department of Computer Science,
+% University of Saskatchewan.
+% Contact: Thian-Peng Ter <thianpeng.ter@usask.ca>
+% -----------------------------------------------------------------------------
+
+\mode<presentation> {
+  \usetheme{Warsaw}
+  \setbeamercovered{transparent}
+  % set up University of Saskatchewan colour for both structure and background
+  \definecolor{uofsgreen}{rgb}{0,0.4,0.21}
+  \usecolortheme[named=uofsgreen]{structure}
+  \setbeamertemplate{background canvas}[vertical shading]
+      [bottom=uofsgreen!20,top=white]
+  % the default colour was green, now switch to blended blue
+  \setbeamercolor{example text}{fg=beamer@blendedblue}
+}
+
+% Language in the presentation slide
+\usepackage[english]{babel} \usepackage[latin1]{inputenc}
+
+% Font type for this presentation
+\usepackage{lmodern} \usepackage[T1]{fontenc}
+
+% University logo and header
+
+% Split theme headline. This is used to restore the split theme headline when the
+% headline template has been defined to display header logo on the title page.
+\newcommand\splitthemeheadline {
+  % Copied from \defbeamertemplate*{headline}{split theme} at
+  % beamerouthemesplit.sty
+  \leavevmode%
+  \@tempdimb=2.4375ex%
+  \ifnum\beamer@subsectionmax<\beamer@sectionmax%
+    \multiply\@tempdimb by\beamer@sectionmax%
+  \else%
+    \multiply\@tempdimb by\beamer@subsectionmax%
+  \fi%
+  \ifdim\@tempdimb>0pt%
+    \advance\@tempdimb by 1.125ex%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=\@tempdimb]{section in head/foot}%
+      \vbox to\@tempdimb{\vfil\insertsectionnavigation{.5\paperwidth}\vfil}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=\@tempdimb]{subsection in head/foot}%
+      \vbox to\@tempdimb{\vfil\insertsubsectionnavigation{.5\paperwidth}\vfil}%
+    \end{beamercolorbox}%
+  \fi%
+
+  % Copied from \addtobeamertemplate{headline} at beamerouterthemeshadow.sty
+  \vskip-0.2pt                                                
+  \pgfuseshading{beamer@topshade}                             
+  \vskip-2pt
+}
+
+% A quick fix to display university header on the title page
+\newcommand{\uofstitlepage} {
+  \setbeamertemplate{headline}{\pgfuseimage{header-logo}}
+  \begin{frame}
+    \titlepage
+  \end{frame}
+  \setbeamertemplate{headline}{\splitthemeheadline}
+
+  % Put after title frame. The university logo will appear at the bottom right
+  % of every slide.
+  %\logo{\pgfuseimage{university-logo}}
+}
